@@ -1,0 +1,27 @@
+.container {
+    max-width: 90%;
+}
+.text-center {
+    text-align: center;
+}
+
+.top-margin {
+    margin-top: 40px;
+}
+
+.bottom-margin {
+    margin-bottom: 40px;
+}
+
+.great-vibes {
+    font-family: 'Great Vibes', cursive;
+}
+
+#form {
+    border-style: solid;
+    border-color: rgb(180, 180, 180);
+    border-radius: 15px;
+    border-width: 0px;
+    padding: 40px 20px 20px 20px;
+    box-shadow: 0px 0px 10px 0.5px rgba(0, 0, 255, .2);
+}
