@@ -1,3 +1,12 @@
+#firstName,
+#lastName{
+    text-transform: capitalize;
+}
+
+#email {
+    text-transform: lowercase;
+}
+
 .container {
     max-width: 90%;
 }
