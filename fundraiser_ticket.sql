@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 05, 2018 at 02:48 PM
+-- Generation Time: Dec 05, 2018 at 08:26 PM
 -- Server version: 5.7.24-0ubuntu0.18.04.1
 -- PHP Version: 7.2.12-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -32,7 +32,6 @@ CREATE TABLE `fundraiser_ticket` (
   `lastName` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(15) NOT NULL,
-  `transaction_ref` varchar(20) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

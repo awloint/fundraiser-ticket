@@ -42,6 +42,10 @@ $(document).ready(function (){
 
         var dataString = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&phone=' + phone;
 
+        // when payment has been successfully made, this is the dataString to send by POST
+        var dataString2 = dataString + '&paid=1'
+
+
         // check to see if the person has already registered
         $.ajax({
             type: 'POST',
@@ -50,6 +54,55 @@ $(document).ready(function (){
             success: function(result) {
                 if(result == "user exists") {
                     swal("Already Paid", "You have already paid for the Fundraiser Ticket.", "info");
+                    setTimeout(function () {
+                        window.location = 'https://awlo.org/'
+                    }, 3000);
+                } else {
+                    // Bring up the Payment Page
+                    function payWithPaystack() {
+                        var handler = PaystackPop.setup({
+                            key: 'pk_live_f6812130fbccdaebe8f96c01101b86fced77d895',
+                            email: email,
+                            amount: 1000000,
+                            firstname: firstName,
+                            lastname: lastName,
+                            metadata: {
+                                custom_fields: [
+                                    {
+                                        display_name: "Mobile Number",
+                                        variable_name: "mobile_number",
+                                        value: phone
+                                    }
+                                ]
+                            },
+                            callback: function (response) {
+
+                                // console.log(response);
+                                // If payment was successful, then post the User Data to the Database and give value
+                                if (response.status == 'success') {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: 'buy.php',
+                                        data: dataString2,
+                                        success: function (datapost) {
+
+                                        }
+                                    });
+
+                                    // Alert the User of a successful registration
+                                    swal("Success", "Your ticket purchase was successful and your transaction ref is " + response.reference, "success");
+                                    setTimeout(function () {
+                                        window.location = 'https://awlo.org'
+                                    }, 3000);
+                                }
+
+                            },
+
+                        });
+                        handler.openIframe();
+                    }
+
+                    payWithPaystack();
                 }
             }
         });
